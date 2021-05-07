@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html{
+    min-height: 100vh;
+    height: 100%;
+    font-family: 'Itim', cursive;
+    
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin-bottom: 50px;
+
+    background-color: #FFFAF0;
+    box-shadow: 10px 10px #2D3748;
+}
+
+form label{
+    font-size: 20px;
+}
+
+form input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 3px solid #2D3748;
+    margin-left: 7px;
+}
+
+form input::placeholder{
+    font-weight: 600;
+    color: #5a5d61;
+}
+
+form button{
+    background-color: #2D3748;
+    color: #fff;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    box-shadow: 6px 7px #DD6B20;
+    margin-top: 20px;
+    transition: all .2s;
+}
+
+form button:hover{
+    cursor: pointer;
+    background-color: #DD6B20;
+    box-shadow: 6px 7px #2D3748;
+}
+
+.cliente{
+    display: flex;
+    align-items: center;
+}
+
+.cliente-info{
+    margin-right: 10px;
+}
+
+.cliente span{
+    font-size: 35px;
+    color: red;
+    font-weight: bold;
+    transition: all .2s;
+}
+
+.cliente span:hover{
+    color: rgb(99, 0, 0);
+    cursor: pointer;
+}

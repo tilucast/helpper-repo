@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
+    <title>Formulário de Cadastro de Clientes</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body>
+
+    <main
+        id="main"
+        x-data="clientesData()"
+    >
+        <form x-ref="formElement" @submit="submitForm($event, $refs.formElement)">
+            <label for="nome">
+                Nome:
+                <input x-model="current.nome" required type="text" placeholder="Nome" id="nome">
+            </label>
+
+            <label for="email">
+                E-mail:
+                <input x-model="current.email" type="text" placeholder="Email" id="email">
+            </label>
+
+            <label for="cpf">
+                CPF:
+                <input x-model="current.cpf" type="text" placeholder="CPF" id="cpf">
+            </label>
+
+            <label for="telefone">
+                Telefone:
+                <input x-model="current.telefone" type="text" placeholder="Telefone" id="telefone">
+            </label>
+
+            <label for="cep">
+                CEP:
+                <input x-model="current.cep" type="text" placeholder="CEP" id="cep">
+            </label>
+
+            <label for="logradouro">
+                Logradouro:
+                <input x-model="current.logradouro" type="text" placeholder="Logradouro" id="logradouro">
+            </label>
+
+            <label for="numero">
+                Número:
+                <input x-model="current.numero" type="text" placeholder="Numero" id="numero">
+            </label>
+
+            <label for="bairro">
+                Bairro:
+                <input x-model="current.bairro" type="text" placeholder="Bairro" id="bairro">
+            </label>
+
+            <label for="cidade">
+                Cidade:
+                <input x-model="current.cidade" type="text" placeholder="Cidade" id="cidade">
+            </label>
+
+            <label for="estado">
+                Estado:
+                <input x-model="current.estado" type="text" placeholder="Estado" id="estado">
+            </label>
+
+            <button type="submit">Criar Cliente</button>
+        </form>
+
+        <template x-for="(cliente,index) in clientes" :key="index">
+            <div class="cliente">
+                <p class="cliente-info" x-text="cliente.nome"></p>
+                <p class="cliente-info" x-text="cliente.email"></p>
+                <p class="cliente-info" x-text="cliente.telefone"></p>
+                <p class="cliente-info" x-text="cliente.cidade"></p>
+                <span @click="deleteACliente(index)">X</span>
+            </div>
+        </template>
+    </main>
+
+    <script>
+        function clientesData(){
+            return {
+                clientes: [],
+                current: {
+                    nome: "",
+                    email: "",
+                    cpf: "",
+                    telefone: "",
+                    cep: "",
+                    logradouro: "",
+                    numero: "",
+                    bairro: "",
+                    cidade: "",
+                    estado: ""
+                },
+                submitForm: function(event, formElement) {
+                    event.preventDefault()
+                    
+                    this.clientes.push({...this.current})
+                    formElement.reset()
+                    for(prop in this.current){
+                        this.current[prop] = ""
+                    }
+                },
+                deleteACliente: function(index){
+                    this.clientes.splice(index, 1)
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>
