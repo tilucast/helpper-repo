@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
-    <title>Formulário de Cadastro de Clientes</title>
+    <title>Formulário de Cadastro de Cliente</title>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
         x-data="clientesData()"
         x-init="$nextTick(() => { 
             const clientesOnLocalStorage = getSomethingFromLocalStorage('clientes')
-            clientes = clientesOnLocalStorage
+            !clientesOnLocalStorage ? clientes = [] : clientes = clientesOnLocalStorage
         })"
     >
         <form x-ref="formElement" @submit="submitForm($event, $refs.formElement)">
@@ -122,7 +122,7 @@
                     this.saveSomethingOnLocalStorage('clientes', this.clientes)
                 },
                 storeOnLocalStorage: function(){
-                    const clientesOnLocalStorage = this.getSomethingFromLocalStorage('clientes')
+                    const clientesOnLocalStorage = this.getSomethingFromLocalStorage('clientes') || []
                     clientesOnLocalStorage.concat(this.clientes)
                     this.saveSomethingOnLocalStorage('clientes', this.clientes)
                 },
